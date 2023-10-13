@@ -38,6 +38,7 @@ class Habit(models.Model):
     is_public = models.BooleanField(default=False, verbose_name='признак публичности')
     is_pleasing_habit = models.BooleanField(default=False, verbose_name='признак приятной привычки')
     created_by = models.ForeignKey('users.User', on_delete=models.CASCADE, null=True, blank=True, verbose_name='автор')
+    last_reminder = models.DateTimeField(null=True, blank=True, verbose_name='дата отправки последнего напоминания')
     #  варианты вознаграждения
     reward_with_action = models.ForeignKey(Reward, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='вознаграждение действием')
     reward_with_pleasing_habit = models.ForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, verbose_name='вознаграждение приятной привычкой')
