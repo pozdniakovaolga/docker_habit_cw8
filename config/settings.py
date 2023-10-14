@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'django_filters',
+    'corsheaders',
 
     'main',
     'users',
@@ -55,6 +56,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,6 +142,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # User
 AUTH_USER_MODEL = 'users.User'
 
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
@@ -152,24 +155,34 @@ REST_FRAMEWORK = {
     ),
 }
 
+# Authentication
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=1440),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
 }
 
-# URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'  # Redis на порту 6379
+# Celery
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'  # URL-адрес брокера сообщений, Redis
 
-# URL-адрес брокера результатов, также Redis
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'  # URL-адрес брокера результатов, Redis
 
-# Часовой пояс для работы Celery
-CELERY_TIMEZONE = "UTC"
+CELERY_TIMEZONE = "UTC"  # Часовой пояс для работы Celery
 
-#Расписание периодических задач Celery
 CELERY_BEAT_SCHEDULE = {
     'send_reminder': {
         'task': 'main.tasks.send_reminder',
         'schedule': timedelta(minutes=1),
     },
-}
+}  # Расписание периодических задач Celery
+
+
+# CORS
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',  # Замените на адрес фронтенд-сервера
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://127.0.0.1:8000',  # Замените на адрес фронтенд-сервера
+]
+
+CORS_ALLOW_ALL_ORIGINS = False
