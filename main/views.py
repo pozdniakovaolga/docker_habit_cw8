@@ -63,7 +63,7 @@ class HabitListAPIView(generics.ListAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        queryset = Habit.objects.filter(created_by=self.request.user)
+        queryset = Habit.objects.filter(created_by=self.request.user).order_by('id')
         return queryset
 
 
