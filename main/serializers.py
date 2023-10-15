@@ -23,7 +23,7 @@ class RewardSerializer(serializers.ModelSerializer):
 class HabitCreateUpdateSerializer(serializers.ModelSerializer):
     """Сериализатор для создания и редактирования модели Привычка"""
     # фильтрация списка для поля reward_with_pleasing_habit: только привычки с признаком приятной привычки
-    reward_with_pleasing_habit = serializers.PrimaryKeyRelatedField(queryset=Habit.objects.filter(is_pleasing_habit=True), allow_null=True)
+    reward_with_pleasing_habit = serializers.PrimaryKeyRelatedField(queryset=Habit.objects.filter(is_pleasing_habit=True), allow_null=True, required=False)
 
     class Meta:
         model = Habit
