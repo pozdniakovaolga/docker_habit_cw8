@@ -7,6 +7,7 @@ from datetime import datetime, timedelta, timezone
 
 from main.models import Habit
 
+
 @shared_task
 def send_reminder():
     """Рассылает пользователям напоминания о наступлении времени для выполнения привычки """

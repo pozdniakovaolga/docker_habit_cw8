@@ -16,4 +16,3 @@ class RegisterAPIView(generics.CreateAPIView):
 class MyTokenObtainPairView(TokenObtainPairView):
     """Контроллер для получения JWT-токена"""
     serializer_class = MyTokenObtainPairSerializer
-

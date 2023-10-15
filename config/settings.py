@@ -162,11 +162,14 @@ SIMPLE_JWT = {
 }
 
 # Celery
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'  # URL-адрес брокера сообщений, Redis
+# URL-адрес брокера сообщений, Redis
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
 
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'  # URL-адрес брокера результатов, Redis
+# URL-адрес брокера результатов, Redis
+CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
 
-CELERY_TIMEZONE = "UTC"  # Часовой пояс для работы Celery
+# Часовой пояс для работы Celery
+CELERY_TIMEZONE = "UTC"
 
 CELERY_BEAT_SCHEDULE = {
     'send_reminder': {
