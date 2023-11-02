@@ -7,18 +7,23 @@
 
 Установка и использование
 
-Для работы программы необходимо установить зависимости, указанные в файле pyproject.toml.
+Для работы программы необходимо заполнить файлы:
 
-Заполнить файл .env своими данными (на примере файла .env.sample).
+.env своими данными (на примере файла .env.sample)
+
+.env_docker своими данными (на примере файла .env_docker.sample).
 
 В файле settings.py необходимо указать адреса frontend-серверов в разделе CORS
 
-Сделать миграции.
+Установить Docker и запустить следующие команды:
 
-Запустить задачу по рассылке уведомлений:
+#запуск приложения
 
-celery -A config worker -l info
-celery -A config beat -l info -S django
+docker-compose up -d --build
+
+#создание superuser
+
+docker exec docker_habit_cw8-app-1 python manage.py csu
 
 
 Описание приложений
