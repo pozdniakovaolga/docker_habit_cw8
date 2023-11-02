@@ -16,5 +16,5 @@ RUN poetry config virtualenvs.create false && poetry install --no-dev --no-root
 # Копируем код приложения в контейнер
 COPY . /app/
 
- # Команда для запуска приложения при старте контейнера
- CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Команда для запуска приложения при старте контейнера
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
