@@ -93,7 +93,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('DB_NAME'),
         'USER': os.getenv('DB_USER'),
-        'PASSWORD': os.getenv('DB_PASSWORD')
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': 'db'
     }
 }
 
@@ -163,10 +164,10 @@ SIMPLE_JWT = {
 
 # Celery
 # URL-адрес брокера сообщений, Redis
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 
 # URL-адрес брокера результатов, Redis
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379'
+CELERY_RESULT_BACKEND = 'redis://redis:6379/0'
 
 # Часовой пояс для работы Celery
 CELERY_TIMEZONE = "UTC"
@@ -181,11 +182,11 @@ CELERY_BEAT_SCHEDULE = {
 
 # CORS
 CORS_ALLOWED_ORIGINS = [
-    'http://127.0.0.1:8000',  # Замените на адрес фронтенд-сервера
+    'http://127.0.0.1:8001',  # Замените на адрес фронтенд-сервера
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    'http://127.0.0.1:8000',  # Замените на адрес фронтенд-сервера
+    'http://127.0.0.1:8001',  # Замените на адрес фронтенд-сервера
 ]
 
 CORS_ALLOW_ALL_ORIGINS = False
